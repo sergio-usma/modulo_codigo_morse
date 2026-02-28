@@ -1,19 +1,40 @@
 // Variables de estado globales
 let data = null;                     // Datos cargados desde data.json
 let readLectures = new Set();        // IDs de lecturas leídas
-let doneFC = new Set();              // Índices de flashcards vistas
-let doneQ = new Set();               // Índices de preguntas respondidas correctamente
-let curFC = 0;                       // Flashcard actual
-let curQ = 0;                        // Pregunta actual
+let doneFC = new Set();              // Índices de flashcards vistas (índices originales)
+let doneQ = new Set();               // Índices de preguntas respondidas correctamente (índices originales)
+let curFC = 0;                       // Índice actual en la lista mezclada de flashcards
+let curQ = 0;                        // Índice actual en la lista mezclada de quiz
+
+let shuffledFlashcardsIndices = [];   // Orden mezclado de índices de flashcards
+let shuffledQuizIndices = [];         // Orden mezclado de índices de preguntas
 
 const STORAGE_KEY = 'maritimeEthicsProgress';
 const DARK_MODE_KEY = 'darkMode';
+
+// Función para mezclar array (Fisher-Yates)
+function shuffleArray(array) {
+  const a = [...array];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 // Cargar datos al iniciar
 async function loadData() {
   try {
     const response = await fetch('data.json');
     data = await response.json();
+
+    // Inicializar índices mezclados
+    if (data.flashcards) {
+      shuffledFlashcardsIndices = shuffleArray([...Array(data.flashcards.length).keys()]);
+    }
+    if (data.quiz) {
+      shuffledQuizIndices = shuffleArray([...Array(data.quiz.length).keys()]);
+    }
 
     initFlashcards();
     initQuiz();
@@ -48,13 +69,14 @@ function initFlashcards() {
 }
 
 function renderFC() {
-  const fc = data.flashcards[curFC];
+  const originalIndex = shuffledFlashcardsIndices[curFC];
+  const fc = data.flashcards[originalIndex];
   document.getElementById('fc-front').textContent = fc.f;
   document.getElementById('fc-back').textContent = fc.b;
   document.getElementById('fc-counter').textContent =
     `${curFC + 1} / ${data.flashcards.length}`;
 
-  doneFC.add(curFC);
+  doneFC.add(originalIndex);
   saveProgress();
   updateProgress();
 
@@ -65,6 +87,14 @@ function renderFC() {
 function changeFC(dir) {
   if (!data || !data.flashcards || data.flashcards.length === 0) return;
   curFC = (curFC + dir + data.flashcards.length) % data.flashcards.length;
+  renderFC();
+}
+
+// Función para mezclar flashcards (shuffle)
+function shuffleFlashcards() {
+  if (!data || !data.flashcards) return;
+  shuffledFlashcardsIndices = shuffleArray([...Array(data.flashcards.length).keys()]);
+  curFC = 0;
   renderFC();
 }
 
@@ -106,7 +136,8 @@ function renderQ() {
     console.warn('renderQ: datos de quiz no disponibles');
     return;
   }
-  const q = data.quiz[curQ];
+  const originalIndex = shuffledQuizIndices[curQ];
+  const q = data.quiz[originalIndex];
   if (!q) {
     console.error('renderQ: pregunta actual es undefined', curQ);
     return;
@@ -148,7 +179,7 @@ function renderQ() {
     optCont.appendChild(btn);
   });
 
-  if (doneQ.has(curQ)) {
+  if (doneQ.has(originalIndex)) {
     const options = document.querySelectorAll('.quiz-option');
     options.forEach(opt => opt.disabled = true);
     if (options[q.c]) options[q.c].classList.add('correct');
@@ -164,11 +195,12 @@ function handleQuizAnswer(selectedIdx, correctIdx, explanation, btn) {
   const allOptions = document.querySelectorAll('.quiz-option');
   const expDiv = document.getElementById('quiz-exp');
   const nextBtn = document.getElementById('btn-next-q');
+  const originalIndex = shuffledQuizIndices[curQ];
 
-  if (doneQ.has(curQ)) return;
+  if (doneQ.has(originalIndex)) return;
 
   if (selectedIdx === correctIdx) {
-    doneQ.add(curQ);
+    doneQ.add(originalIndex);
     saveProgress();
     updateProgress();
 
@@ -259,19 +291,24 @@ function loadProgress() {
 // ---------- DARK MODE ----------
 function initDarkMode() {
   const darkModeToggle = document.getElementById('darkModeToggle');
-  const darkModeIcon = document.getElementById('darkModeIcon');
+  const darkModeFloating = document.getElementById('darkModeFloating');
+  const darkModeIcons = document.querySelectorAll('.dark-mode-icon');
 
-  if (!darkModeToggle || !darkModeIcon) return;
+  if (!darkModeToggle || !darkModeFloating) return;
 
   function applyDarkMode(isDark) {
     if (isDark) {
       document.body.classList.add('dark-mode');
-      darkModeIcon.classList.remove('bi-moon-fill');
-      darkModeIcon.classList.add('bi-sun-fill');
+      darkModeIcons.forEach(icon => {
+        icon.classList.remove('bi-moon-fill');
+        icon.classList.add('bi-sun-fill');
+      });
     } else {
       document.body.classList.remove('dark-mode');
-      darkModeIcon.classList.remove('bi-sun-fill');
-      darkModeIcon.classList.add('bi-moon-fill');
+      darkModeIcons.forEach(icon => {
+        icon.classList.remove('bi-sun-fill');
+        icon.classList.add('bi-moon-fill');
+      });
     }
     localStorage.setItem(DARK_MODE_KEY, isDark);
   }
@@ -285,12 +322,14 @@ function initDarkMode() {
   applyDarkMode(savedDarkMode === 'true');
 
   darkModeToggle.addEventListener('click', toggleDarkMode);
+  darkModeFloating.addEventListener('click', toggleDarkMode);
 }
 
 // Exponer funciones globales necesarias desde el HTML
 window.markAsRead = markAsRead;
 window.changeFC = changeFC;
 window.nextQuestion = nextQuestion;
+window.shuffleFlashcards = shuffleFlashcards;
 
 // Inicializar cuando la página cargue
 window.onload = function () {

@@ -476,3 +476,77 @@ footer a:hover {
     font-size: 1.4rem;
   }
 }
+
+/* ===== NUEVOS ESTILOS (AÑADIDOS) ===== */
+
+/* Botón flotante para modo oscuro en móviles */
+.dark-mode-floating {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  background-color: var(--primary);
+  color: white;
+  border: 2px solid var(--accent);
+  transition: all 0.3s ease;
+}
+
+.dark-mode-floating:hover {
+  transform: scale(1.1);
+  background-color: var(--secondary);
+}
+
+/* Media query para móviles */
+@media (max-width: 768px) {
+  /* Ocultar el botón original en la barra de navegación */
+  .navbar .btn-icon {
+    display: none;
+  }
+
+  /* Mostrar el botón flotante */
+  .dark-mode-floating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Ajuste para el contenedor de anexos */
+#anexos img {
+  max-width: 100%;
+  height: auto;
+  border: 4px solid var(--primary);
+  transition: border-color 0.3s ease;
+}
+
+.dark-mode #anexos img {
+  border-color: var(--accent);
+}
+
+/* Pequeño ajuste para el botón de mezcla (shuffle) en flashcards */
+.btn-outline-secondary {
+  color: var(--text);
+  border-color: var(--primary);
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.dark-mode .btn-outline-secondary {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.dark-mode .btn-outline-secondary:hover {
+  background-color: var(--accent);
+  color: #121212;
+  border-color: var(--accent);
+}
