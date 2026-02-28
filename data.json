@@ -165,125 +165,125 @@
       "b": "Signo de exclamación (!)"
     }
   ],
- "quiz": [
+"quiz": [
   {
     "q": "Decodifica la palabra en Morse: .../---/...",
-    "o": ["SOS", "MAYDAY", "PANPAN", "SECURITE"],
-    "c": 0,
+    "o": ["MAYDAY", "SOS", "PANPAN", "SECURITE"],
+    "c": 1,
     "e": "SOS"
   },
   {
     "q": "Decodifica la palabra en Morse: .../---/-.-./---/.-./.-./---",
-    "o": ["SOCORRO", "AUXILIO", "RESCATE", "EMERGENCIA"],
-    "c": 0,
+    "o": ["RESCATE", "SOCORRO", "EMERGENCIA", "AUXILIO"],
+    "c": 1,
     "e": "SOCORRO"
   },
   {
     "q": "Decodifica la palabra en Morse: .-/..-/-..-/../.-../../---",
-    "o": ["AUXILIO", "SOCORRO", "RESCATE", "SALVAMENTO"],
-    "c": 0,
+    "o": ["SALVAMENTO", "RESCATE", "AUXILIO", "SOCORRO"],
+    "c": 2,
     "e": "AUXILIO"
   },
   {
     "q": "Decodifica la palabra en Morse: ./--/./.-./--././-./-.-./../.-",
-    "o": ["EMERGENCIA", "ALARMA", "PELIGRO", "URGENCIA"],
-    "c": 0,
+    "o": ["ALARMA", "PELIGRO", "EMERGENCIA", "URGENCIA"],
+    "c": 2,
     "e": "EMERGENCIA"
   },
   {
     "q": "Decodifica la palabra en Morse: .--././.-../../--./.-./---",
-    "o": ["PELIGRO", "RIESGO", "ALERTA", "AMENAZA"],
-    "c": 0,
+    "o": ["RIESGO", "ALERTA", "PELIGRO", "AMENAZA"],
+    "c": 2,
     "e": "PELIGRO"
   },
   {
     "q": "Decodifica la palabra en Morse: -./.-/..-/..-./.-./.-/--./../---",
-    "o": ["NAUFRAGIO", "COLISION", "VARADA", "HUNDIMIENTO"],
-    "c": 0,
+    "o": ["COLISION", "HUNDIMIENTO", "NAUFRAGIO", "VARADA"],
+    "c": 2,
     "e": "NAUFRAGIO"
   },
   {
     "q": "Decodifica la palabra en Morse: -.-./.-/.--./../-/.-/-.",
-    "o": ["CAPITAN", "OFICIAL", "PATRON", "COMANDANTE"],
-    "c": 0,
+    "o": ["OFICIAL", "COMANDANTE", "CAPITAN", "PATRON"],
+    "c": 2,
     "e": "CAPITAN"
   },
   {
     "q": "Decodifica la palabra en Morse: --/.-/.-./../-././.-./---",
-    "o": ["MARINERO", "TIMONEL", "NAVEGANTE", "TRIPULANTE"],
-    "c": 0,
+    "o": ["TIMONEL", "TRIPULANTE", "MARINERO", "NAVEGANTE"],
+    "c": 2,
     "e": "MARINERO"
   },
   {
     "q": "Decodifica la palabra en Morse: -.../.-/.-./-.-./---",
-    "o": ["BARCO", "BUQUE", "NAVIO", "EMBARCACION"],
-    "c": 0,
+    "o": ["NAVIO", "BUQUE", "BARCO", "EMBARCACION"],
+    "c": 2,
     "e": "BARCO"
   },
   {
     "q": "Decodifica la palabra en Morse: -.../..-/--.-/..-/.",
-    "o": ["BUQUE", "BARCO", "CRUCERO", "NAVIO"],
-    "c": 0,
+    "o": ["NAVIO", "BUQUE", "CRUCERO", "BARCO"],
+    "c": 1,
     "e": "BUQUE"
   },
   {
     "q": "Decodifica la palabra en Morse: .--./.-./---/.-",
-    "o": ["PROA", "POPA", "QUILLA", "CASTILLO"],
-    "c": 0,
+    "o": ["POPA", "CASTILLO", "PROA", "QUILLA"],
+    "c": 2,
     "e": "PROA"
   },
   {
     "q": "Decodifica la palabra en Morse: .--./---/.--./.-",
-    "o": ["POPA", "PROA", "CUBIERTA", "TIMON"],
-    "c": 0,
+    "o": ["TIMON", "PROA", "POPA", "CUBIERTA"],
+    "c": 2,
     "e": "POPA"
   },
   {
     "q": "Decodifica la palabra en Morse: -.../.-/-.../---/.-.",
-    "o": ["BABOR", "ESTRIBOR", "PROA", "POPA"],
-    "c": 0,
+    "o": ["ESTRIBOR", "AMURA", "BABOR", "POPA"],
+    "c": 2,
     "e": "BABOR"
   },
   {
     "q": "Decodifica la palabra en Morse: ./.../-/.-./../-.../---/.-.",
-    "o": ["ESTRIBOR", "BABOR", "AMURA", "ALETA"],
-    "c": 0,
+    "o": ["BABOR", "ALETA", "ESTRIBOR", "AMURA"],
+    "c": 2,
     "e": "ESTRIBOR"
   },
   {
     "q": "Decodifica la palabra en Morse: .-/-./-.-./.-../.-",
-    "o": ["ANCLA", "CADENA", "FONDEO", "AMARRE"],
-    "c": 0,
+    "o": ["FONDEO", "ANCLA", "CADENA", "AMARRE"],
+    "c": 1,
     "e": "ANCLA"
   },
   {
     "q": "Decodifica la palabra en Morse: -/../--/---/-.",
-    "o": ["TIMON", "RUEDA", "GOBIERNO", "PALANCA"],
-    "c": 0,
+    "o": ["GOBIERNO", "PALANCA", "RUEDA", "TIMON"],
+    "c": 3,
     "e": "TIMON"
   },
   {
     "q": "Decodifica la palabra en Morse: .-./..-/--/-.../---",
-    "o": ["RUMBO", "DERROTA", "CURSO", "TRAYECTO"],
-    "c": 0,
+    "o": ["DERROTA", "TRAYECTO", "RUMBO", "CURSO"],
+    "c": 2,
     "e": "RUMBO"
   },
   {
     "q": "Decodifica la palabra en Morse: -.../.-./..-/.---/..-/-../.-",
-    "o": ["BRUJULA", "SEXTANTE", "COMPAS", "RADAR"],
-    "c": 0,
+    "o": ["SEXTANTE", "RADAR", "COMPAS", "BRUJULA"],
+    "c": 3,
     "e": "BRUJULA"
   },
   {
     "q": "Decodifica la palabra en Morse: -.-./.-/.-./-/.-",
-    "o": ["CARTA", "PLANO", "MAPA", "DERROTERO"],
-    "c": 0,
+    "o": ["DERROTERO", "PLANO", "CARTA", "MAPA"],
+    "c": 2,
     "e": "CARTA"
   },
   {
     "q": "Decodifica la palabra en Morse: ..-./.-/.-./---",
-    "o": ["FARO", "BALIZA", "BOYA", "SEÑAL"],
-    "c": 0,
+    "o": ["BALIZA", "BOYA", "SEÑAL", "FARO"],
+    "c": 3,
     "e": "FARO"
   }
 ],
